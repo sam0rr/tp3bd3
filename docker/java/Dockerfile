@@ -1,10 +1,12 @@
-FROM openjdk:21-jdk-slim
+FROM openjdk:23-jdk-slim
 WORKDIR /app
 
 COPY pom.xml .
-COPY app/src/ ./src/
+COPY src ./src
+COPY data ./data
 
-RUN apt-get update && apt-get install -y maven
-RUN mvn clean package
+RUN apt-get update \
+ && apt-get install -y maven \
+ && mvn clean package -DskipTests
 
-CMD ["java", "-cp", "target/classes", "Main"]
+CMD ["java", "--enable-preview", "-jar", "target/tp3bd3-1.0-SNAPSHOT.jar"]

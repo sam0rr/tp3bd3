@@ -48,9 +48,9 @@ public class CsvReader {
     }
 
     private static CsvData mapRows(List<String[]> rows) {
-        Map<Integer, Station> stationMap    = new LinkedHashMap<>();
-        Map<String,  Polluant> pollutantMap = new LinkedHashMap<>();
-        List<Mesure>            measures     = new ArrayList<>();
+        Map<Integer, Station> stationMap = new LinkedHashMap<>();
+        Map<String, Polluant> pollutantMap = new LinkedHashMap<>();
+        List<Mesure> measures = new ArrayList<>();
 
         for (String[] row : rows) {
             try {
@@ -84,7 +84,7 @@ public class CsvReader {
         );
 
         // 2 - Pollutant
-        String code = row[3];
+        String code = row[6];
         pollutantMap.computeIfAbsent(code,
                 CsvReader::parsePolluant
         );
@@ -96,11 +96,11 @@ public class CsvReader {
     private static Station parseStation(int id, String[] row) {
         return Station.builder()
                 .stationId(id)
-                .adresse(row[5])
-                .latitude(Double.parseDouble(row[6]))
-                .longitude(Double.parseDouble(row[7]))
-                .xCoord(0)  // or compute from lat/long
-                .yCoord(0)
+                .adresse(row[1])
+                .latitude(Double.parseDouble(row[2]))
+                .longitude(Double.parseDouble(row[3]))
+                .xCoord(Double.parseDouble(row[4]))
+                .yCoord(Double.parseDouble(row[5]))
                 .build();
     }
 
@@ -114,10 +114,10 @@ public class CsvReader {
     private static Mesure parseMesure(String[] row, int stationId, String code) {
         return Mesure.builder()
                 .stationId(stationId)
-                .date(LocalDate.parse(row[1]))
-                .heure(Integer.parseInt(row[2]))
+                .date(LocalDate.parse(row[8]))
+                .heure(Integer.parseInt(row[9]))
                 .codePolluant(code)
-                .valeur(Integer.parseInt(row[4]))
+                .valeur(Integer.parseInt(row[7]))
                 .build();
     }
 
