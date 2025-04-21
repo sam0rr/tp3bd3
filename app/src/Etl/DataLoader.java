@@ -4,17 +4,22 @@ import Models.Mesure;
 import Models.Polluant;
 import Models.Station;
 import Utils.DatabaseUtil;
+import Utils.LoggingUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public final class DataLoader {
+    private static final Logger LOGGER = LoggingUtil.getLogger(DataLoader.class);
 
     private DataLoader() { /* no instantiation */ }
 
     public static void loadAll(CsvReader.CsvData data) {
+        LOGGER.info("Beginning database load transaction");
         try (Connection conn = DatabaseUtil.getConnection()) {
             conn.setAutoCommit(false);
 
@@ -23,16 +28,21 @@ public final class DataLoader {
             insertMesures(conn, data.measures());
 
             conn.commit();
+            LOGGER.info("Database load transaction committed successfully");
         } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error inserting data into DB, rolling back", e);
             throw new RuntimeException("Error inserting data into DB: " + e.getMessage(), e);
         }
     }
 
     private static void insertStations(Connection conn, List<Station> stations) throws SQLException {
-        String sql = "INSERT INTO station"
-                + " (station_id, adresse, latitude, longitude, x_coord, y_coord)"
-                + " VALUES (?, ?, ?, ?, ?, ?)"
-                + " ON CONFLICT(station_id) DO NOTHING";
+        LOGGER.info(() -> "Inserting " + stations.size() + " stations");
+        String sql = """
+            INSERT INTO station
+              (station_id, adresse, latitude, longitude, x_coord, y_coord)
+            VALUES (?, ?, ?, ?, ?, ?)
+            ON CONFLICT (station_id) DO NOTHING
+            """;
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             for (Station s : stations) {
@@ -45,14 +55,18 @@ public final class DataLoader {
                 ps.addBatch();
             }
             ps.executeBatch();
+            LOGGER.info("Stations insert batch executed");
         }
     }
 
     private static void insertPolluants(Connection conn, List<Polluant> pollutants) throws SQLException {
-        String sql = "INSERT INTO polluant"
-                + " (code_polluant, description)"
-                + " VALUES (?, ?)"
-                + " ON CONFLICT(code_polluant) DO NOTHING";
+        LOGGER.info(() -> "Inserting " + pollutants.size() + " pollutants");
+        String sql = """
+            INSERT INTO polluant
+              (code_polluant, description)
+            VALUES (?, ?)
+            ON CONFLICT (code_polluant) DO NOTHING
+            """;
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             for (Polluant p : pollutants) {
@@ -61,14 +75,18 @@ public final class DataLoader {
                 ps.addBatch();
             }
             ps.executeBatch();
+            LOGGER.info("Pollutants insert batch executed");
         }
     }
 
     private static void insertMesures(Connection conn, List<Mesure> measures) throws SQLException {
-        String sql = "INSERT INTO mesure"
-                + " (station_id, date, heure, code_polluant, valeur)"
-                + " VALUES (?, ?, ?, ?, ?)"
-                + " ON CONFLICT(station_id, date, heure) DO NOTHING";
+        LOGGER.info(() -> "Inserting " + measures.size() + " measures");
+        String sql = """
+            INSERT INTO mesure
+              (station_id, date, heure, code_polluant, valeur)
+            VALUES (?, ?, ?, ?, ?)
+            ON CONFLICT (station_id, date, heure) DO NOTHING
+            """;
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             for (Mesure m : measures) {
@@ -80,6 +98,7 @@ public final class DataLoader {
                 ps.addBatch();
             }
             ps.executeBatch();
+            LOGGER.info("Measures insert batch executed");
         }
     }
 }

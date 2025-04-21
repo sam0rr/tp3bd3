@@ -3,38 +3,40 @@ package Utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public final class DatabaseUtil {
-    private static final String ENV_DB_URL       = "DB_URL";
-    private static final String ENV_DB_USER      = "DB_USER";
-    private static final String ENV_DB_PASSWORD  = "DB_PASSWORD";
+    private static final Logger LOGGER = LoggingUtil.getLogger(DatabaseUtil.class);
 
     private static final String url;
     private static final String user;
     private static final String password;
 
-    private DatabaseUtil() {/* no instantiation */}
+    private DatabaseUtil() { /* prevent instantiation */ }
 
     static {
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
-            throw new ExceptionInInitializerError("PostgreSQL JDBC Driver manquant : " + e.getMessage());
+            LOGGER.log(Level.SEVERE, "PostgreSQL JDBC Driver not found", e);
+            throw new ExceptionInInitializerError(e);
         }
 
-        url      = System.getenv(ENV_DB_URL);
-        user     = System.getenv(ENV_DB_USER);
-        password = System.getenv(ENV_DB_PASSWORD);
+        Map<String, String> env = System.getenv();
+        url      = getEnv(env, "DB_URL");
+        user     = getEnv(env, "DB_USER");
+        password = getEnv(env, "DB_PASSWORD");
+    }
 
-        if (url == null || url.isBlank()) {
-            throw new IllegalStateException("La variable d'environnement DB_URL n'est pas définie");
+    private static String getEnv(Map<String, String> env, String key) {
+        String val = env.get(key);
+        if (val == null || val.isBlank()) {
+            LOGGER.severe("Required environment variable " + key + " is not set");
+            throw new IllegalStateException(key + " must be defined");
         }
-        if (user == null || user.isBlank()) {
-            throw new IllegalStateException("La variable d'environnement DB_USER n'est pas définie");
-        }
-        if (password == null || password.isBlank()) {
-            throw new IllegalStateException("La variable d'environnement DB_PASSWORD n'est pas définie");
-        }
+        return val;
     }
 
     public static Connection getConnection() throws SQLException {
