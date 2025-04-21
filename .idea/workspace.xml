@@ -5,17 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b540e7dc-2ca4-4450-a779-2e684aa783c3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/sql/init.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Mesure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Mesure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Polluant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Polluant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Station.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Station.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/Etl/DataLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/Etl/EtlRunner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/Utils/DatabaseUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker/java/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a7f1688c-80a9-4274-9b9b-c2bdd382f497.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a7f1688c-80a9-4274-9b9b-c2bdd382f497.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a7f1688c-80a9-4274-9b9b-c2bdd382f497/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a7f1688c-80a9-4274-9b9b-c2bdd382f497/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Etl/CsvReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/Etl/CsvReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Etl/DataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/docker/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Mesure.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/Models/Mesure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Polluant.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/Models/Polluant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Station.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/Models/Station.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/DatabaseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -32,6 +51,7 @@
     &quot;accountId&quot;: &quot;f905181e-6c62-4507-9cd0-01c0df77308a&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
   <component name="KubernetesApiProvider"><![CDATA[{
   "isMigrated": true
 }]]></component>
@@ -45,11 +65,15 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "Application.main.executor": "Run",
     "Database Script.init.sql.executor": "Run",
+    "Docker.docker.app: Compose Deployment.executor": "Run",
+    "Docker.postgres/Dockerfile.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/samor140/Documents/a-storage/tp3bd3/data",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -70,12 +94,24 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/docker/java" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.main">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="tp3bd3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="UNNAMED_CLASS_CONFIGURATION" value="true" />
       <option name="MAIN_CLASS_NAME" value="main" />
@@ -90,8 +126,41 @@
       <data-source id="a7f1688c-80a9-4274-9b9b-c2bdd382f497" />
       <method v="2" />
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker.app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="app" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="postgres/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="containerName" value="" />
+          <option name="sourceFilePath" value="docker/postgres/Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Docker.docker.app: Compose Deployment" />
+        <item itemvalue="Docker.postgres/Dockerfile" />
         <item itemvalue="Application.main" />
         <item itemvalue="Database Script.init.sql" />
       </list>
@@ -113,7 +182,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1745270232885</updated>
-      <workItem from="1745270233823" duration="1668000" />
+      <workItem from="1745270233823" duration="4476000" />
     </task>
     <servers />
   </component>
