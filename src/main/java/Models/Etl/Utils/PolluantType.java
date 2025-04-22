@@ -1,4 +1,4 @@
-package Models;
+package Models.Etl.Utils;
 
 import lombok.Getter;
 
@@ -9,7 +9,9 @@ public enum PolluantType {
     O3("Ozone troposphérique"),
     PM("Particules fines (PM2.5)"),
     SO2("Dioxyde de soufre"),
-    UNKNOWN("Inconnu");
+    UNKNOWN("Inconnu"),
+    PM25("Particules fines (PM2.5)"),
+    PM10("Particules grossières (PM10)");
 
     private final String description;
 

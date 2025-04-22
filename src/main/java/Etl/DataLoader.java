@@ -1,15 +1,21 @@
 package Etl;
 
+import Models.Etl.Extractors.Dto.CsvData;
 import Models.Mesure;
+import Models.Municipalite;
 import Models.Polluant;
 import Models.Station;
+import Models.TypeMilieu;
 import Utils.Database.DatabaseUtil;
 import Utils.Logging.LoggingUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public final class DataLoader {
@@ -17,28 +23,80 @@ public final class DataLoader {
 
     private DataLoader() { /* no instantiation */ }
 
-    public static void loadAll(DataExtractor.CsvData data) {
+    public static void loadAll(CsvData data) {
+        LOGGER.info("Starting database load process");
+
         DatabaseUtil.runTransaction(connection -> {
-            LOGGER.info(() -> "Inserting " + data.stations().size() + " stations");
-            insertStations(connection, data.stations());
+            insertTypeMilieux(connection, data.getTypeMilieux());
+            insertMunicipalites(connection, data.getMunicipalites());
 
-            LOGGER.info(() -> "Inserting " + data.pollutants().size() + " pollutants");
-            insertPolluants(connection, data.pollutants());
+            insertStations(connection, data.getStations());
+            insertPolluants(connection, data.getPollutants());
 
-            LOGGER.info(() -> "Inserting " + data.measures().size() + " measures");
-            insertMesures(connection, data.measures());
+            insertMesures(connection, data.getMeasures());
+
+            LOGGER.info("Database load completed successfully");
+        });
+    }
+
+    private static void insertTypeMilieux(Connection conn, List<TypeMilieu> typeMilieux) throws SQLException {
+        LOGGER.info(() -> "Inserting " + typeMilieux.size() + " environment types");
+
+        var sql = """
+            INSERT INTO type_milieu
+              (type_milieu_id, nom)
+            VALUES (?, ?)
+            ON CONFLICT (type_milieu_id) DO UPDATE
+            SET nom = EXCLUDED.nom
+            """;
+
+        executeBatch(conn, sql, typeMilieux.size(), ps -> {
+            for (TypeMilieu t : typeMilieux) {
+                ps.setInt(1, t.getTypeMilieuId());
+                ps.setString(2, t.getNom());
+                ps.addBatch();
+            }
+        });
+    }
+
+    private static void insertMunicipalites(Connection conn, List<Municipalite> municipalites) throws SQLException {
+        LOGGER.info(() -> "Inserting " + municipalites.size() + " municipalities");
+
+        var sql = """
+            INSERT INTO municipalite
+              (municipalite_id, nom)
+            VALUES (?, ?)
+            ON CONFLICT (municipalite_id) DO UPDATE
+            SET nom = EXCLUDED.nom
+            """;
+
+        executeBatch(conn, sql, municipalites.size(), ps -> {
+            for (Municipalite m : municipalites) {
+                ps.setInt(1, m.getMunicipaliteId());
+                ps.setString(2, m.getNom());
+                ps.addBatch();
+            }
         });
     }
 
     private static void insertStations(Connection conn, List<Station> stations) throws SQLException {
+        LOGGER.info(() -> "Inserting " + stations.size() + " stations");
+
         var sql = """
             INSERT INTO station
-              (station_id, adresse, latitude, longitude, x_coord, y_coord)
-            VALUES (?, ?, ?, ?, ?, ?)
-            ON CONFLICT (station_id) DO NOTHING
+              (station_id, adresse, latitude, longitude, x_coord, y_coord, municipalite_id, type_milieu_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT (station_id) DO UPDATE
+            SET adresse = EXCLUDED.adresse,
+                latitude = EXCLUDED.latitude,
+                longitude = EXCLUDED.longitude,
+                x_coord = EXCLUDED.x_coord,
+                y_coord = EXCLUDED.y_coord,
+                municipalite_id = EXCLUDED.municipalite_id,
+                type_milieu_id = EXCLUDED.type_milieu_id
             """;
 
-        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+        executeBatch(conn, sql, stations.size(), ps -> {
             for (Station s : stations) {
                 ps.setInt(1, s.getStationId());
                 ps.setString(2, s.getAdresse());
@@ -46,39 +104,46 @@ public final class DataLoader {
                 ps.setDouble(4, s.getLongitude());
                 ps.setDouble(5, s.getXCoord());
                 ps.setDouble(6, s.getYCoord());
+                ps.setInt(7, s.getMunicipaliteId());
+                ps.setInt(8, s.getTypeMilieuId());
                 ps.addBatch();
             }
-            ps.executeBatch();
-        }
+        });
     }
 
     private static void insertPolluants(Connection conn, List<Polluant> pollutants) throws SQLException {
+        LOGGER.info(() -> "Inserting " + pollutants.size() + " pollutants");
+
         var sql = """
             INSERT INTO polluant
               (code_polluant, description)
             VALUES (?, ?)
-            ON CONFLICT (code_polluant) DO NOTHING
+            ON CONFLICT (code_polluant) DO UPDATE
+            SET description = EXCLUDED.description
             """;
 
-        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+        executeBatch(conn, sql, pollutants.size(), ps -> {
             for (Polluant p : pollutants) {
                 ps.setString(1, p.getCodePolluant());
                 ps.setString(2, p.getDescription());
                 ps.addBatch();
             }
-            ps.executeBatch();
-        }
+        });
     }
 
     private static void insertMesures(Connection conn, List<Mesure> measures) throws SQLException {
+        LOGGER.info(() -> "Inserting " + measures.size() + " measures");
+
         var sql = """
             INSERT INTO mesure
               (station_id, date, heure, code_polluant, valeur)
             VALUES (?, ?, ?, ?, ?)
-            ON CONFLICT (station_id, date, heure) DO NOTHING
+            ON CONFLICT (station_id, date, heure) DO UPDATE
+            SET code_polluant = EXCLUDED.code_polluant,
+                valeur = EXCLUDED.valeur
             """;
 
-        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+        executeBatch(conn, sql, measures.size(), ps -> {
             for (Mesure m : measures) {
                 ps.setInt(1, m.getStationId());
                 ps.setDate(2, java.sql.Date.valueOf(m.getDate()));
@@ -87,7 +152,30 @@ public final class DataLoader {
                 ps.setInt(5, m.getValeur());
                 ps.addBatch();
             }
-            ps.executeBatch();
+        });
+    }
+
+    @FunctionalInterface
+    private interface BatchOperation {
+        void execute(PreparedStatement ps) throws SQLException;
+    }
+
+    private static void executeBatch(Connection conn, String sql, int batchSize, BatchOperation operation)
+            throws SQLException {
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            operation.execute(ps);
+            int[] results = ps.executeBatch();
+            logBatchResults(batchSize, results);
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error executing batch operation", e);
+            throw e;
         }
+    }
+
+    private static void logBatchResults(int expectedSize, int[] results) {
+        int successCount = (int) Arrays.stream(results).filter(result -> result >= 0 || result == Statement.SUCCESS_NO_INFO).count();
+
+        LOGGER.info(() -> String.format("Batch execution completed: %d/%d successful operations",
+                successCount, expectedSize));
     }
 }

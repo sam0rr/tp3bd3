@@ -1,5 +1,7 @@
 package Etl;
 
+import Etl.Extractors.DataExtractor;
+import Models.Etl.Extractors.Dto.CsvData;
 import Utils.Logging.LoggingUtil;
 
 import java.time.Duration;
@@ -24,20 +26,22 @@ public final class EtlRunner {
         loadAllData(data);
     }
 
-    private static DataExtractor.CsvData extractAllData() {
+    private static CsvData extractAllData() {
         return DataExtractor.readAll();
     }
 
-    private static void logExtractionCounts(DataExtractor.CsvData data) {
+    private static void logExtractionCounts(CsvData data) {
         LOGGER.info(() -> String.format(
-                "Extracted %d stations, %d pollutants, %d measures",
-                data.stations().size(),
-                data.pollutants().size(),
-                data.measures().size()
+                "Extracted %d stations, %d pollutants, %d measures, %d municipalities, %d environment types",
+                data.getStations().size(),
+                data.getPollutants().size(),
+                data.getMeasures().size(),
+                data.getMunicipalites().size(),
+                data.getTypeMilieux().size()
         ));
     }
 
-    private static void loadAllData(DataExtractor.CsvData data) {
+    private static void loadAllData(CsvData data) {
         try {
             DataLoader.loadAll(data);
             LOGGER.info("Loading completed successfully");
