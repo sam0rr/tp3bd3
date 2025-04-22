@@ -2,6 +2,7 @@ package Etl;
 
 import Models.Mesure;
 import Models.Polluant;
+import Models.PolluantType;
 import Models.Station;
 import Utils.LoggingUtil;
 import com.univocity.parsers.csv.CsvParser;
@@ -105,9 +106,10 @@ public class CsvReader {
     }
 
     private static Polluant parsePolluant(String code) {
+        PolluantType type = PolluantType.fromCode(code);
         return Polluant.builder()
-                .codePolluant(code)
-                .description(getPolluantDescription(code))
+                .codePolluant(type.name())
+                .description(type.getDescription())
                 .build();
     }
 
@@ -119,16 +121,5 @@ public class CsvReader {
                 .codePolluant(code)
                 .valeur(Integer.parseInt(row[7]))
                 .build();
-    }
-
-    private static String getPolluantDescription(String code) {
-        return switch (code.toUpperCase()) {
-            case "CO"  -> "Monoxyde de carbone";
-            case "NO2" -> "Dioxyde d'azote";
-            case "O3"  -> "Ozone troposphérique";
-            case "PM"  -> "Particules fines (PM2.5)";
-            case "SO2" -> "Dioxyde de soufre";
-            default    -> "Inconnu";
-        };
     }
 }

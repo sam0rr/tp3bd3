@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b540e7dc-2ca4-4450-a779-2e684aa783c3" name="Changes" comment="feat : drop database instead of dropping tables (fix connection handling, etc)" />
+    <list default="true" id="b540e7dc-2ca4-4450-a779-2e684aa783c3" name="Changes" comment="feat : drop database instead of dropping tables (fix connection handling, etc)">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a7f1688c-80a9-4274-9b9b-c2bdd382f497.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a7f1688c-80a9-4274-9b9b-c2bdd382f497.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a7f1688c-80a9-4274-9b9b-c2bdd382f497/storage_v2/_src_/database/qualite_air.9vuM3Q/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a7f1688c-80a9-4274-9b9b-c2bdd382f497/storage_v2/_src_/database/qualite_air.9vuM3Q/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a7f1688c-80a9-4274-9b9b-c2bdd382f497/storage_v2/_src_/database/qualite_air.9vuM3Q/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a7f1688c-80a9-4274-9b9b-c2bdd382f497/storage_v2/_src_/database/qualite_air.9vuM3Q/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a7f1688c-80a9-4274-9b9b-c2bdd382f497/storage_v2/_src_/database/qualite_air.9vuM3Q/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a7f1688c-80a9-4274-9b9b-c2bdd382f497/storage_v2/_src_/database/qualite_air.9vuM3Q/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -154,7 +160,8 @@
       <workItem from="1745270233823" duration="8691000" />
       <workItem from="1745292160478" duration="1003000" />
       <workItem from="1745293175966" duration="453000" />
-      <workItem from="1745293645305" duration="6245000" />
+      <workItem from="1745293645305" duration="6348000" />
+      <workItem from="1745300042036" duration="1811000" />
     </task>
     <task id="LOCAL-00001" summary="feat : use jdk 21 LTS">
       <option name="closed" value="true" />
@@ -188,7 +195,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745299830253</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feat : drop database instead of dropping tables (fix connection handling, etc)">
+      <option name="closed" value="true" />
+      <created>1745299979700</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1745299979700</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
