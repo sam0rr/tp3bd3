@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b540e7dc-2ca4-4450-a779-2e684aa783c3" name="Changes" comment="feat : add pool connections *thanks t1willi" />
+    <list default="true" id="b540e7dc-2ca4-4450-a779-2e684aa783c3" name="Changes" comment="feat : drop database instead of dropping tables (fix connection handling, etc)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,26 +92,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Docker.docker-compose.yml.app: Compose Deployment">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <envs>
-        <env name="DB_URL" value="jdbc:postgresql://localhost:5432/qualite_air" />
-        <env name="DB_USER" value="dev" />
-        <env name="DB_PASSWORD" value="devpassword " />
-      </envs>
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="tp3bd3" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="UNNAMED_CLASS_CONFIGURATION" value="true" />
-      <option name="MAIN_CLASS_NAME" value="main" />
-      <module name="tp3bd3" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="init.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/sql/init.sql" />
       <script-mode>FILE</script-mode>
@@ -133,6 +113,7 @@
     <configuration name="docker-compose.yml.app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
+          <option name="envFilePath" value="" />
           <option name="services">
             <list>
               <option value="app" />
@@ -143,28 +124,13 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="postgres/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
-      <deployment type="dockerfile">
-        <settings>
-          <option name="containerName" value="" />
-          <option name="sourceFilePath" value="docker/postgres/Dockerfile" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="Application.main" />
       <item itemvalue="Database Script.init.sql" />
       <item itemvalue="Docker.docker-compose.yml.app: Compose Deployment" />
-      <item itemvalue="Docker.postgres/Dockerfile" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Docker.docker-compose.yml.app: Compose Deployment" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Docker.postgres/Dockerfile" />
-        <item itemvalue="Application.main" />
         <item itemvalue="Database Script.init.sql" />
       </list>
     </recent_temporary>
@@ -188,7 +154,7 @@
       <workItem from="1745270233823" duration="8691000" />
       <workItem from="1745292160478" duration="1003000" />
       <workItem from="1745293175966" duration="453000" />
-      <workItem from="1745293645305" duration="3807000" />
+      <workItem from="1745293645305" duration="6245000" />
     </task>
     <task id="LOCAL-00001" summary="feat : use jdk 21 LTS">
       <option name="closed" value="true" />
@@ -206,7 +172,23 @@
       <option name="project" value="LOCAL" />
       <updated>1745297429105</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat : start and stop timer">
+      <option name="closed" value="true" />
+      <created>1745297679297</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1745297679297</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat : drop database instead of dropping tables (fix connection handling, etc)">
+      <option name="closed" value="true" />
+      <created>1745299830253</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1745299830253</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,6 +200,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat : use jdk 21 LTS" />
     <MESSAGE value="feat : add pool connections *thanks t1willi" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat : add pool connections *thanks t1willi" />
+    <MESSAGE value="feat : start and stop timer" />
+    <MESSAGE value="feat : drop database instead of dropping tables (fix connection handling, etc)" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat : drop database instead of dropping tables (fix connection handling, etc)" />
   </component>
 </project>

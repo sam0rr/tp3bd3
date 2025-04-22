@@ -19,11 +19,11 @@ public final class DataSourceWrapper {
     private static final Deque<Connection> available = new ArrayDeque<>();
     private static final Deque<Connection> used      = new ArrayDeque<>();
 
-    private static final String URL        = requireEnv("DB_URL");
-    private static final String USER       = requireEnv("DB_USER");
-    private static final String PASSWORD   = requireEnv("DB_PASSWORD");
-    private static final String SCHEMA     = requireEnv("POSTGRES_DB");
-    private static final int    POOL_SIZE  = Integer.parseInt(requireEnv("DB_POOL_SIZE"));
+    private static final String URL       = requireEnv("DB_URL");
+    private static final String USER      = requireEnv("POSTGRES_USER");
+    private static final String PASSWORD  = requireEnv("POSTGRES_PASSWORD");
+    private static final String SCHEMA    = requireEnv("POSTGRES_DB");
+    private static final int    POOL_SIZE = Integer.parseInt(requireEnv("DB_POOL_SIZE"));
 
     static {
         initializePool();
@@ -40,12 +40,7 @@ public final class DataSourceWrapper {
 
     private static Connection createConnection() {
         try {
-            Connection c = DriverManager.getConnection(URL, USER, PASSWORD);
-            if (!SCHEMA.isBlank()) {
-                c.createStatement()
-                        .execute("SET search_path TO " + SCHEMA);
-            }
-            return c;
+            return DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a new connection", e);
         }
