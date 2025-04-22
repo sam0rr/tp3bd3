@@ -5,21 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b540e7dc-2ca4-4450-a779-2e684aa783c3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/Etl/CsvReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Etl/CsvReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/Etl/DataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Etl/DataLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/Etl/EtlRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Etl/EtlRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/Models/Mesure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Mesure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/Models/Polluant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Polluant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/Models/Station.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Station.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/Utils/DatabaseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/DatabaseUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/Utils/LoggingUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/LoggingUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/java/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/java/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,6 +92,11 @@
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="DB_URL" value="jdbc:postgresql://localhost:5432/qualite_air" />
+        <env name="DB_USER" value="dev" />
+        <env name="DB_PASSWORD" value="devpassword " />
+      </envs>
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="tp3bd3" />
       <method v="2">
@@ -133,7 +125,7 @@
       <deployment type="dockerfile" />
       <method v="2" />
     </configuration>
-    <configuration name="docker.app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yml.app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
@@ -141,7 +133,7 @@
               <option value="app" />
             </list>
           </option>
-          <option name="sourceFilePath" value="docker/docker-compose.yml" />
+          <option name="sourceFilePath" value="docker-compose.yml" />
         </settings>
       </deployment>
       <method v="2" />
@@ -155,10 +147,17 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.main" />
+      <item itemvalue="Database Script.init.sql" />
+      <item itemvalue="Docker.docker-compose.yml.app: Compose Deployment" />
+      <item itemvalue="Docker.postgres/Dockerfile" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Docker.docker.app: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.app: Compose Deployment" />
         <item itemvalue="Docker.postgres/Dockerfile" />
         <item itemvalue="Application.main" />
         <item itemvalue="Database Script.init.sql" />
@@ -181,11 +180,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1745270232885</updated>
-      <workItem from="1745270233823" duration="7171000" />
+      <workItem from="1745270233823" duration="8205000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
   </component>
 </project>
