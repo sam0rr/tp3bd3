@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b540e7dc-2ca4-4450-a779-2e684aa783c3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a7f1688c-80a9-4274-9b9b-c2bdd382f497.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a7f1688c-80a9-4274-9b9b-c2bdd382f497.xml" afterDir="false" />
+    <list default="true" id="b540e7dc-2ca4-4450-a779-2e684aa783c3" name="Changes" comment="feat : use jdk 21 LTS">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Utils/DataSourceWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/java/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/java/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Etl/DataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Etl/DataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/DatabaseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/DatabaseUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,40 +52,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.main.executor": "Run",
-    "Database Script.init.sql.executor": "Run",
-    "Docker.docker-compose.yml.app: Compose Deployment.executor": "Run",
-    "Docker.docker.app: Compose Deployment.executor": "Run",
-    "Docker.postgres/Dockerfile.executor": "Run",
-    "Maven.tp3bd3 [clean,install].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/samor140/Documents/a-storage/tp3bd3/data",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.main.executor&quot;: &quot;Run&quot;,
+    &quot;Database Script.init.sql.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.app: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker.app: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.postgres/Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.tp3bd3 [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/samor140/Documents/a-storage/tp3bd3/data&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ],
-    "RunConfigurationTargetLRU": [
-      "a7f1688c-80a9-4274-9b9b-c2bdd382f497"
+    &quot;RunConfigurationTargetLRU&quot;: [
+      &quot;a7f1688c-80a9-4274-9b9b-c2bdd382f497&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/data" />
@@ -193,8 +194,18 @@
       <updated>1745270232885</updated>
       <workItem from="1745270233823" duration="8691000" />
       <workItem from="1745292160478" duration="1003000" />
-      <workItem from="1745293175966" duration="310000" />
+      <workItem from="1745293175966" duration="453000" />
+      <workItem from="1745293645305" duration="3475000" />
     </task>
+    <task id="LOCAL-00001" summary="feat : use jdk 21 LTS">
+      <option name="closed" value="true" />
+      <created>1745293626469</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1745293626469</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,5 +213,9 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat : use jdk 21 LTS" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat : use jdk 21 LTS" />
   </component>
 </project>

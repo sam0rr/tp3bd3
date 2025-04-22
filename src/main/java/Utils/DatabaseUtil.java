@@ -1,45 +1,62 @@
 package Utils;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public final class DatabaseUtil {
     private static final Logger LOGGER = LoggingUtil.getLogger(DatabaseUtil.class);
 
-    private static final String url;
-    private static final String user;
-    private static final String password;
+    private DatabaseUtil() { /* no instances */ }
 
-    private DatabaseUtil() { /* prevent instantiation */ }
+    @FunctionalInterface
+    public interface TransactionalOperation {
+        void execute(Connection connection) throws SQLException;
+    }
 
-    static {
+    public static void runTransaction(TransactionalOperation operation) {
+        Connection connection = null;
         try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            LOGGER.log(Level.SEVERE, "PostgreSQL JDBC Driver not found", e);
-            throw new ExceptionInInitializerError(e);
-        }
+            connection = DataSourceWrapper.getConnection();
+            connection.setAutoCommit(false);
 
-        Map<String, String> env = System.getenv();
-        url      = getEnv(env, "DB_URL");
-        user     = getEnv(env, "DB_USER");
-        password = getEnv(env, "DB_PASSWORD");
+            operation.execute(connection);
+
+            commitTransaction(connection);
+            LOGGER.fine("Transaction committed");
+        } catch (Throwable t) {
+            rollbackTransaction(connection, t);
+            throw new RuntimeException("Transaction failed: " + t.getMessage(), t);
+        } finally {
+            releaseConnection(connection);
+        }
     }
 
-    private static String getEnv(Map<String, String> env, String key) {
-        String val = env.get(key);
-        if (val == null || val.isBlank()) {
-            LOGGER.severe("Required environment variable " + key + " is not set");
-            throw new IllegalStateException(key + " must be defined");
+    private static void commitTransaction(Connection connection) throws SQLException {
+        if (connection != null) {
+            connection.commit();
         }
-        return val;
     }
 
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(url, user, password);
+    private static void rollbackTransaction(Connection connection, Throwable error) {
+        if (connection != null) {
+            try {
+                connection.rollback();
+                LOGGER.info("Transaction rolled back");
+            } catch (SQLException e) {
+                LOGGER.log(Level.SEVERE, "Failed to roll back after error: " + error.getMessage(), e);
+            }
+        }
+    }
+
+    private static void releaseConnection(Connection connection) {
+        if (connection != null) {
+            try {
+                DataSourceWrapper.releaseConnection(connection);
+            } catch (Exception e) {
+                LOGGER.log(Level.WARNING, "Error releasing connection", e);
+            }
+        }
     }
 }

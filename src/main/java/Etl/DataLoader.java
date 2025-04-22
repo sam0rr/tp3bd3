@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public final class DataLoader {
@@ -19,25 +18,20 @@ public final class DataLoader {
     private DataLoader() { /* no instantiation */ }
 
     public static void loadAll(CsvReader.CsvData data) {
-        LOGGER.info("Beginning database load transaction");
-        try (Connection conn = DatabaseUtil.getConnection()) {
-            conn.setAutoCommit(false);
+        DatabaseUtil.runTransaction(connection -> {
+            LOGGER.info(() -> "Inserting " + data.stations().size() + " stations");
+            insertStations(connection, data.stations());
 
-            insertStations(conn, data.stations());
-            insertPolluants(conn, data.pollutants());
-            insertMesures(conn, data.measures());
+            LOGGER.info(() -> "Inserting " + data.pollutants().size() + " pollutants");
+            insertPolluants(connection, data.pollutants());
 
-            conn.commit();
-            LOGGER.info("Database load transaction committed successfully");
-        } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Error inserting data into DB, rolling back", e);
-            throw new RuntimeException("Error inserting data into DB: " + e.getMessage(), e);
-        }
+            LOGGER.info(() -> "Inserting " + data.measures().size() + " measures");
+            insertMesures(connection, data.measures());
+        });
     }
 
     private static void insertStations(Connection conn, List<Station> stations) throws SQLException {
-        LOGGER.info(() -> "Inserting " + stations.size() + " stations");
-        String sql = """
+        var sql = """
             INSERT INTO station
               (station_id, adresse, latitude, longitude, x_coord, y_coord)
             VALUES (?, ?, ?, ?, ?, ?)
@@ -55,13 +49,11 @@ public final class DataLoader {
                 ps.addBatch();
             }
             ps.executeBatch();
-            LOGGER.info("Stations insert batch executed");
         }
     }
 
     private static void insertPolluants(Connection conn, List<Polluant> pollutants) throws SQLException {
-        LOGGER.info(() -> "Inserting " + pollutants.size() + " pollutants");
-        String sql = """
+        var sql = """
             INSERT INTO polluant
               (code_polluant, description)
             VALUES (?, ?)
@@ -75,13 +67,11 @@ public final class DataLoader {
                 ps.addBatch();
             }
             ps.executeBatch();
-            LOGGER.info("Pollutants insert batch executed");
         }
     }
 
     private static void insertMesures(Connection conn, List<Mesure> measures) throws SQLException {
-        LOGGER.info(() -> "Inserting " + measures.size() + " measures");
-        String sql = """
+        var sql = """
             INSERT INTO mesure
               (station_id, date, heure, code_polluant, valeur)
             VALUES (?, ?, ?, ?, ?)
@@ -98,7 +88,6 @@ public final class DataLoader {
                 ps.addBatch();
             }
             ps.executeBatch();
-            LOGGER.info("Measures insert batch executed");
         }
     }
 }
