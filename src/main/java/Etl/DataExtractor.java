@@ -164,7 +164,7 @@ public class DataExtractor {
                 .collect(Collectors.toMap(
                         Station::getStationId,
                         station -> station,
-                        (existing, replacement) -> existing, // Keep first one if duplicates
+                        (existing, replacement) -> existing,
                         LinkedHashMap::new
                 ));
     }

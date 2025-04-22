@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b540e7dc-2ca4-4450-a779-2e684aa783c3" name="Changes" comment="refactoring : utils for separation of concerns">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Utils/Env/EnvUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="b540e7dc-2ca4-4450-a779-2e684aa783c3" name="Changes" comment="refactoring : env util">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +245,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745354641954</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="refactoring : env util">
+      <option name="closed" value="true" />
+      <created>1745355049926</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1745355049926</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,6 +274,7 @@
     <MESSAGE value="feat : implement complex jackson structure to use both csv without errors" />
     <MESSAGE value="feat : add date ouverture and fermeture" />
     <MESSAGE value="refactoring : utils for separation of concerns" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring : utils for separation of concerns" />
+    <MESSAGE value="refactoring : env util" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring : env util" />
   </component>
 </project>
