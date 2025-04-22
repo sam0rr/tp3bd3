@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b540e7dc-2ca4-4450-a779-2e684aa783c3" name="Changes" comment="feat : use jdk 21 LTS">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Utils/DataSourceWrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Etl/DataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Etl/DataLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/DatabaseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/DatabaseUtil.java" afterDir="false" />
-    </list>
+    <list default="true" id="b540e7dc-2ca4-4450-a779-2e684aa783c3" name="Changes" comment="feat : add pool connections *thanks t1willi" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -195,7 +188,7 @@
       <workItem from="1745270233823" duration="8691000" />
       <workItem from="1745292160478" duration="1003000" />
       <workItem from="1745293175966" duration="453000" />
-      <workItem from="1745293645305" duration="3475000" />
+      <workItem from="1745293645305" duration="3807000" />
     </task>
     <task id="LOCAL-00001" summary="feat : use jdk 21 LTS">
       <option name="closed" value="true" />
@@ -205,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745293626469</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat : add pool connections *thanks t1willi">
+      <option name="closed" value="true" />
+      <created>1745297429105</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1745297429105</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,6 +217,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat : use jdk 21 LTS" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat : use jdk 21 LTS" />
+    <MESSAGE value="feat : add pool connections *thanks t1willi" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat : add pool connections *thanks t1willi" />
   </component>
 </project>
