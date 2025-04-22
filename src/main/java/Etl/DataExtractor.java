@@ -15,14 +15,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import static Utils.Env.EnvUtil.*;
+
 public class DataExtractor {
 
     @Getter
     private static final Logger LOGGER = LoggingUtil.getLogger(DataExtractor.class);
 
-    private static final String DEFAULT_MUNICIPALITY = "Montréal";
-    private static final String DEFAULT_ENVIRONMENT_TYPE = "Urbain";
-    private static final int DEFAULT_ENTITY_ID = 1;
+    private static final String DEFAULT_MUNICIPALITY = getString("DEFAULT_MUNICIPALITY", "Montréal");
+    private static final String DEFAULT_ENVIRONMENT_TYPE = getString("DEFAULT_ENVIRONMENT_TYPE", "Urbain");
+    private static final int DEFAULT_ENTITY_ID = getInt("DEFAULT_ENTITY_ID", 1);
 
     public static CsvData readAll() {
         LOGGER.info("Starting data extraction process");

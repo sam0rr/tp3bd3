@@ -1,7 +1,6 @@
 package Utils.Database;
 
 import Utils.Logging.LoggingUtil;
-import io.github.cdimascio.dotenv.Dotenv;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,21 +9,19 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.logging.Logger;
 
+import static Utils.Env.EnvUtil.*;
+
 public final class DataSourceWrapper {
     private static final Logger LOGGER = LoggingUtil.getLogger(DataSourceWrapper.class);
-
-    private static final Dotenv dotenv = Dotenv.configure()
-            .ignoreIfMissing()
-            .load();
 
     private static final Deque<Connection> available = new ArrayDeque<>();
     private static final Deque<Connection> used      = new ArrayDeque<>();
 
-    private static final String URL       = requireEnv("DB_URL");
-    private static final String USER      = requireEnv("POSTGRES_USER");
-    private static final String PASSWORD  = requireEnv("POSTGRES_PASSWORD");
-    private static final String SCHEMA    = requireEnv("POSTGRES_DB");
-    private static final int    POOL_SIZE = Integer.parseInt(requireEnv("DB_POOL_SIZE"));
+    private static final String URL       = getRequired("DB_URL");
+    private static final String USER      = getRequired("POSTGRES_USER");
+    private static final String PASSWORD  = getRequired("POSTGRES_PASSWORD");
+    private static final String SCHEMA    = getRequired("POSTGRES_DB");
+    private static final int    POOL_SIZE = getInt("DB_POOL_SIZE", 10);
 
     static {
         initializePool();
@@ -45,16 +42,6 @@ public final class DataSourceWrapper {
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a new connection", e);
         }
-    }
-
-    private static String requireEnv(String key) {
-        String v = dotenv.get(key);
-        if (v == null || v.isBlank()) {
-            String msg = "Environment variable '" + key + "' must be defined in .env file";
-            LOGGER.severe(msg);
-            throw new IllegalStateException(msg);
-        }
-        return v;
     }
 
     public static synchronized Connection getConnection() throws SQLException {
