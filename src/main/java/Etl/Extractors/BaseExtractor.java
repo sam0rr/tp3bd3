@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import lombok.Getter;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;

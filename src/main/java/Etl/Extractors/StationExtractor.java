@@ -1,14 +1,15 @@
 package Etl.Extractors;
 
-
+import Models.Etl.Extractors.Csv.StationCsvModel;
 import Models.Etl.Extractors.Dto.StationData;
 import Models.Station;
-import Models.Etl.Extractors.Csv.StationCsvModel;
 import Utils.Logging.LoggingUtil;
 import lombok.Getter;
-
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
+
+import static Utils.Parsing.ParsingUtil.parseDateOrNull;
 
 public class StationExtractor extends BaseExtractor<StationCsvModel> {
 
@@ -40,39 +41,23 @@ public class StationExtractor extends BaseExtractor<StationCsvModel> {
         Map<Integer, String> stationMunicipalites = new HashMap<>();
         Map<Integer, String> stationTypeMilieux = new HashMap<>();
 
-        int nextMunicipalityId = 1;
-        int nextTypeId = 1;
+        AtomicInteger nextMunicipalityId = new AtomicInteger(1);
+        AtomicInteger nextTypeId = new AtomicInteger(1);
 
         for (StationCsvModel model : csvModels) {
             try {
-                int stationId = model.getStationId();
                 String municipalityName = model.getMunicipalite();
                 String typeName = model.getTypeMilieu();
+                int stationId = model.getStationId();
 
-                if (!municipalityMap.containsKey(municipalityName)) {
-                    municipalityMap.put(municipalityName, nextMunicipalityId++);
-                }
-
-                if (!typeMap.containsKey(typeName)) {
-                    typeMap.put(typeName, nextTypeId++);
-                }
+                municipalityMap.computeIfAbsent(municipalityName, key -> nextMunicipalityId.getAndIncrement());
+                typeMap.computeIfAbsent(typeName, key -> nextTypeId.getAndIncrement());
 
                 stationMunicipalites.put(stationId, municipalityName);
                 stationTypeMilieux.put(stationId, typeName);
 
-                Station station = Station.builder()
-                        .stationId(stationId)
-                        .adresse(model.getAdresse())
-                        .latitude(model.getLatitude())
-                        .longitude(model.getLongitude())
-                        .xCoord(0.0)
-                        .yCoord(0.0)
-                        .municipaliteId(municipalityMap.get(municipalityName))
-                        .typeMilieuId(typeMap.get(typeName))
-                        .build();
-
+                Station station = buildStationFromModel(model, municipalityMap, typeMap);
                 stationMap.put(stationId, station);
-
             } catch (Exception ex) {
                 logProcessingError(model, ex);
             }
@@ -86,6 +71,19 @@ public class StationExtractor extends BaseExtractor<StationCsvModel> {
                 .stationTypeMilieux(stationTypeMilieux)
                 .municipalityIdMap(municipalityMap)
                 .typeIdMap(typeMap)
+                .build();
+    }
+
+    private Station buildStationFromModel(StationCsvModel model, Map<String, Integer> municipalityMap, Map<String, Integer> typeMap) {
+        return Station.builder()
+                .stationId(model.getStationId())
+                .adresse(model.getAdresse())
+                .latitude(model.getLatitude())
+                .longitude(model.getLongitude())
+                .dateOuverture(parseDateOrNull(model.getDateOuverture()))
+                .dateFermeture(parseDateOrNull(model.getDateFermeture()))
+                .municipaliteId(municipalityMap.get(model.getMunicipalite()))
+                .typeMilieuId(typeMap.get(model.getTypeMilieu()))
                 .build();
     }
 

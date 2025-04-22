@@ -8,18 +8,17 @@ import Models.Station;
 import Models.TypeMilieu;
 import Utils.Database.DatabaseUtil;
 import Utils.Logging.LoggingUtil;
-
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static Utils.Database.StatementUtil.setOrNull;
 
 public final class DataLoader {
     private static final Logger LOGGER = LoggingUtil.getLogger(DataLoader.class);
@@ -32,10 +31,8 @@ public final class DataLoader {
         DatabaseUtil.runTransaction(connection -> {
             insertTypeMilieux(connection, data.getTypeMilieux());
             insertMunicipalites(connection, data.getMunicipalites());
-
             insertStations(connection, data.getStations());
             insertPolluants(connection, data.getPollutants());
-
             insertMesures(connection, data.getMeasures());
 
             LOGGER.info("Database load completed successfully");
@@ -55,8 +52,8 @@ public final class DataLoader {
 
         executeBatch(conn, sql, typeMilieux.size(), ps -> {
             for (TypeMilieu t : typeMilieux) {
-                ps.setInt(1, t.getTypeMilieuId());
-                ps.setString(2, t.getNom());
+                setOrNull(ps, 1, t.getTypeMilieuId(), Types.INTEGER);
+                setOrNull(ps, 2, t.getNom(), Types.VARCHAR);
                 ps.addBatch();
             }
         });
@@ -75,8 +72,8 @@ public final class DataLoader {
 
         executeBatch(conn, sql, municipalites.size(), ps -> {
             for (Municipalite m : municipalites) {
-                ps.setInt(1, m.getMunicipaliteId());
-                ps.setString(2, m.getNom());
+                setOrNull(ps, 1, m.getMunicipaliteId(), Types.INTEGER);
+                setOrNull(ps, 2, m.getNom(), Types.VARCHAR);
                 ps.addBatch();
             }
         });
@@ -103,27 +100,19 @@ public final class DataLoader {
 
         executeBatch(conn, sql, stations.size(), ps -> {
             for (Station s : stations) {
-                ps.setInt(1, s.getStationId());
-                ps.setString(2, s.getAdresse());
-                ps.setDouble(3, s.getLatitude());
-                ps.setDouble(4, s.getLongitude());
-                ps.setDouble(5, s.getXCoord());
-                ps.setDouble(6, s.getYCoord());
-                setDateOrNull(ps, 7, s.getDateOuverture());
-                setDateOrNull(ps, 8, s.getDateFermeture());
-                ps.setInt(9, s.getMunicipaliteId());
-                ps.setInt(10, s.getTypeMilieuId());
+                setOrNull(ps, 1, s.getStationId(), Types.INTEGER);
+                setOrNull(ps, 2, s.getAdresse(), Types.VARCHAR);
+                setOrNull(ps, 3, s.getLatitude(), Types.DOUBLE);
+                setOrNull(ps, 4, s.getLongitude(), Types.DOUBLE);
+                setOrNull(ps, 5, s.getXCoord(), Types.DOUBLE);
+                setOrNull(ps, 6, s.getYCoord(), Types.DOUBLE);
+                setOrNull(ps, 7, s.getDateOuverture(), Types.DATE);
+                setOrNull(ps, 8, s.getDateFermeture(), Types.DATE);
+                setOrNull(ps, 9, s.getMunicipaliteId(), Types.INTEGER);
+                setOrNull(ps, 10, s.getTypeMilieuId(), Types.INTEGER);
                 ps.addBatch();
             }
         });
-    }
-
-    private static void setDateOrNull(PreparedStatement ps, int paramIndex, LocalDate date) throws SQLException {
-        if (date != null) {
-            ps.setDate(paramIndex, Date.valueOf(date));
-        } else {
-            ps.setNull(paramIndex, Types.DATE);
-        }
     }
 
     private static void insertPolluants(Connection conn, List<Polluant> pollutants) throws SQLException {
@@ -139,8 +128,8 @@ public final class DataLoader {
 
         executeBatch(conn, sql, pollutants.size(), ps -> {
             for (Polluant p : pollutants) {
-                ps.setString(1, p.getCodePolluant());
-                ps.setString(2, p.getDescription());
+                setOrNull(ps, 1, p.getCodePolluant(), Types.VARCHAR);
+                setOrNull(ps, 2, p.getDescription(), Types.VARCHAR);
                 ps.addBatch();
             }
         });
@@ -160,11 +149,11 @@ public final class DataLoader {
 
         executeBatch(conn, sql, measures.size(), ps -> {
             for (Mesure m : measures) {
-                ps.setInt(1, m.getStationId());
-                ps.setDate(2, Date.valueOf(m.getDate()));
-                ps.setInt(3, m.getHeure());
-                ps.setString(4, m.getCodePolluant());
-                ps.setInt(5, m.getValeur());
+                setOrNull(ps, 1, m.getStationId(), Types.INTEGER);
+                setOrNull(ps, 2, m.getDate(), Types.DATE);
+                setOrNull(ps, 3, m.getHeure(), Types.SMALLINT);
+                setOrNull(ps, 4, m.getCodePolluant(), Types.VARCHAR);
+                setOrNull(ps, 5, m.getValeur(), Types.INTEGER);
                 ps.addBatch();
             }
         });

@@ -2,7 +2,6 @@ package Etl;
 
 import Models.Etl.Extractors.Dto.CsvData;
 import Utils.Logging.LoggingUtil;
-
 import java.time.Duration;
 import java.time.Instant;
 import java.util.logging.Level;
