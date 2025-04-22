@@ -1,5 +1,6 @@
-package Utils;
+package Utils.Database;
 
+import Utils.Logging.LoggingUtil;
 import io.github.cdimascio.dotenv.Dotenv;
 
 import java.sql.Connection;

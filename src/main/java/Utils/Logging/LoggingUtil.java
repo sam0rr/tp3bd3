@@ -1,4 +1,4 @@
-package Utils;
+package Utils.Logging;
 
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;

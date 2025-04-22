@@ -4,7 +4,7 @@ import Models.Mesure;
 import Models.Polluant;
 import Models.PolluantType;
 import Models.Station;
-import Utils.LoggingUtil;
+import Utils.Logging.LoggingUtil;
 import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.csv.CsvParserSettings;
 
@@ -15,9 +15,9 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CsvReader {
+public class DataExtractor {
 
-    private static final Logger LOGGER = LoggingUtil.getLogger(CsvReader.class);
+    private static final Logger LOGGER = LoggingUtil.getLogger(DataExtractor.class);
     private static final String CSV_FILE_PATH = "data/rsqa-indice-qualite-air-station.csv";
 
     public record CsvData(List<Station> stations,
@@ -87,7 +87,7 @@ public class CsvReader {
         // 2 - Pollutant
         String code = row[6];
         pollutantMap.computeIfAbsent(code,
-                CsvReader::parsePolluant
+                DataExtractor::parsePolluant
         );
 
         // 3 - Measure

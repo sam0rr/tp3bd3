@@ -9,12 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Station {
-    private int stationId;
-    private String adresse;
-    private double latitude;
-    private double longitude;
-    private double xCoord;
-    private double yCoord;
+public class Municipalite {
     private String codeMunicipalite;
+    private String nom;
+    private String regionAdmin;
 }

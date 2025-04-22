@@ -3,8 +3,8 @@ package Etl;
 import Models.Mesure;
 import Models.Polluant;
 import Models.Station;
-import Utils.DatabaseUtil;
-import Utils.LoggingUtil;
+import Utils.Database.DatabaseUtil;
+import Utils.Logging.LoggingUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +17,7 @@ public final class DataLoader {
 
     private DataLoader() { /* no instantiation */ }
 
-    public static void loadAll(CsvReader.CsvData data) {
+    public static void loadAll(DataExtractor.CsvData data) {
         DatabaseUtil.runTransaction(connection -> {
             LOGGER.info(() -> "Inserting " + data.stations().size() + " stations");
             insertStations(connection, data.stations());

@@ -1,4 +1,6 @@
-package Utils;
+package Utils.Database;
+
+import Utils.Logging.LoggingUtil;
 
 import java.sql.Connection;
 import java.sql.SQLException;
