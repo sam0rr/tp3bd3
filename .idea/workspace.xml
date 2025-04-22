@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b540e7dc-2ca4-4450-a779-2e684aa783c3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a7f1688c-80a9-4274-9b9b-c2bdd382f497.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a7f1688c-80a9-4274-9b9b-c2bdd382f497.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/java/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/java/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,10 +39,10 @@
     &quot;accountId&quot;: &quot;f905181e-6c62-4507-9cd0-01c0df77308a&quot;
   }
 }</component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -52,9 +56,12 @@
     "Application.Main.executor": "Run",
     "Application.main.executor": "Run",
     "Database Script.init.sql.executor": "Run",
+    "Docker.docker-compose.yml.app: Compose Deployment.executor": "Run",
     "Docker.docker.app: Compose Deployment.executor": "Run",
     "Docker.postgres/Dockerfile.executor": "Run",
+    "Maven.tp3bd3 [clean,install].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/samor140/Documents/a-storage/tp3bd3/data",
@@ -66,6 +73,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "MavenSettings",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -89,7 +97,7 @@
       <recent name="$PROJECT_DIR$/docker/java" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Docker.docker-compose.yml.app: Compose Deployment">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
         <env name="DB_URL" value="jdbc:postgresql://localhost:5432/qualite_air" />
@@ -117,11 +125,15 @@
       <method v="2" />
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml" />
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
-      <deployment type="dockerfile" />
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <configuration name="docker-compose.yml.app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
@@ -155,8 +167,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Docker.docker-compose.yml.app: Compose Deployment" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Docker.postgres/Dockerfile" />
         <item itemvalue="Application.main" />
         <item itemvalue="Database Script.init.sql" />
@@ -180,6 +192,8 @@
       <option name="presentableId" value="Default" />
       <updated>1745270232885</updated>
       <workItem from="1745270233823" duration="8691000" />
+      <workItem from="1745292160478" duration="1003000" />
+      <workItem from="1745293175966" duration="310000" />
     </task>
     <servers />
   </component>

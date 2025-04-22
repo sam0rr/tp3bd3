@@ -1,5 +1,7 @@
 import Etl.EtlRunner;
 
-public static void main() {
-    EtlRunner.start();
+public class Main {
+    public static void main(String[] args) {
+        EtlRunner.start();
+    }
 }
