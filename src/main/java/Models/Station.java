@@ -16,5 +16,6 @@ public class Station {
     private double longitude;
     private double xCoord;
     private double yCoord;
-    private String codeMunicipalite;
+    private int municipaliteId;
+    private int typeMilieuId;
 }

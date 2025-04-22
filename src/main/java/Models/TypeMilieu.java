@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Municipalite {
-    private int municipaliteId;
+public class TypeMilieu {
+    private int typeMilieuId;
     private String nom;
 }
