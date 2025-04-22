@@ -10,9 +10,12 @@ import Utils.Database.DatabaseUtil;
 import Utils.Logging.LoggingUtil;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
@@ -84,14 +87,16 @@ public final class DataLoader {
 
         var sql = """
             INSERT INTO station
-              (station_id, adresse, latitude, longitude, x_coord, y_coord, municipalite_id, type_milieu_id)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+              (station_id, adresse, latitude, longitude, x_coord, y_coord, date_ouverture, date_fermeture, municipalite_id, type_milieu_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT (station_id) DO UPDATE
             SET adresse = EXCLUDED.adresse,
                 latitude = EXCLUDED.latitude,
                 longitude = EXCLUDED.longitude,
                 x_coord = EXCLUDED.x_coord,
                 y_coord = EXCLUDED.y_coord,
+                date_ouverture = EXCLUDED.date_ouverture,
+                date_fermeture = EXCLUDED.date_fermeture,
                 municipalite_id = EXCLUDED.municipalite_id,
                 type_milieu_id = EXCLUDED.type_milieu_id
             """;
@@ -104,11 +109,21 @@ public final class DataLoader {
                 ps.setDouble(4, s.getLongitude());
                 ps.setDouble(5, s.getXCoord());
                 ps.setDouble(6, s.getYCoord());
-                ps.setInt(7, s.getMunicipaliteId());
-                ps.setInt(8, s.getTypeMilieuId());
+                setDateOrNull(ps, 7, s.getDateOuverture());
+                setDateOrNull(ps, 8, s.getDateFermeture());
+                ps.setInt(9, s.getMunicipaliteId());
+                ps.setInt(10, s.getTypeMilieuId());
                 ps.addBatch();
             }
         });
+    }
+
+    private static void setDateOrNull(PreparedStatement ps, int paramIndex, LocalDate date) throws SQLException {
+        if (date != null) {
+            ps.setDate(paramIndex, Date.valueOf(date));
+        } else {
+            ps.setNull(paramIndex, Types.DATE);
+        }
     }
 
     private static void insertPolluants(Connection conn, List<Polluant> pollutants) throws SQLException {
@@ -146,7 +161,7 @@ public final class DataLoader {
         executeBatch(conn, sql, measures.size(), ps -> {
             for (Mesure m : measures) {
                 ps.setInt(1, m.getStationId());
-                ps.setDate(2, java.sql.Date.valueOf(m.getDate()));
+                ps.setDate(2, Date.valueOf(m.getDate()));
                 ps.setInt(3, m.getHeure());
                 ps.setString(4, m.getCodePolluant());
                 ps.setInt(5, m.getValeur());

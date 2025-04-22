@@ -4,21 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b540e7dc-2ca4-4450-a779-2e684aa783c3" name="Changes" comment="feat : add second csv">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Etl/Extractors/BaseExtractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Etl/Extractors/MesureExtractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Etl/Extractors/StationExtractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Models/Etl/Extractors/Csv/MesureCsvModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Models/Etl/Extractors/Csv/StationCsvModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Models/Etl/Extractors/Dto/CsvData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Models/Etl/Extractors/Dto/MesureData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Models/Etl/Extractors/Dto/StationData.java" afterDir="false" />
+    <list default="true" id="b540e7dc-2ca4-4450-a779-2e684aa783c3" name="Changes" comment="feat : implement complex jackson structure to use both csv without errors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Etl/DataExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Etl/Extractors/DataExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/init.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Etl/DataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Etl/DataLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Etl/EtlRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Etl/EtlRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Models/PolluantType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Etl/PolluantType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Etl/Extractors/DataExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Etl/DataExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Station.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Station.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,13 +99,7 @@
       <recent name="$PROJECT_DIR$/docker/java" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yml.app: Compose Deployment">
-    <configuration name="init.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
-      <script-file value="$PROJECT_DIR$/sql/init.sql" />
-      <script-mode>FILE</script-mode>
-      <data-source id="a7f1688c-80a9-4274-9b9b-c2bdd382f497" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -140,14 +126,9 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Database Script.init.sql" />
-      <item itemvalue="Docker.docker-compose.yml.app: Compose Deployment" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Docker.docker-compose.yml.app: Compose Deployment" />
-        <item itemvalue="Database Script.init.sql" />
       </list>
     </recent_temporary>
   </component>
@@ -237,7 +218,23 @@
       <option name="project" value="LOCAL" />
       <updated>1745346795784</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat : implement complex jackson structure to use both csv without errors">
+      <option name="closed" value="true" />
+      <created>1745351219563</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1745351219563</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat : implement complex jackson structure to use both csv without errors">
+      <option name="closed" value="true" />
+      <created>1745351284734</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1745351284734</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,6 +252,7 @@
     <MESSAGE value="feat : add table Municipalite" />
     <MESSAGE value="refactoring : change name to dataextractor" />
     <MESSAGE value="feat : add second csv" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat : add second csv" />
+    <MESSAGE value="feat : implement complex jackson structure to use both csv without errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat : implement complex jackson structure to use both csv without errors" />
   </component>
 </project>

@@ -21,6 +21,8 @@ CREATE TABLE IF NOT EXISTS station (
     longitude        DOUBLE PRECISION,
     x_coord          DOUBLE PRECISION,
     y_coord          DOUBLE PRECISION,
+    date_ouverture   DATE,
+    date_fermeture   DATE,
     municipalite_id  INTEGER NOT NULL,
     type_milieu_id   INTEGER NOT NULL,
     FOREIGN KEY (municipalite_id)

@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -16,6 +18,8 @@ public class Station {
     private double longitude;
     private double xCoord;
     private double yCoord;
+    private LocalDate dateOuverture;
+    private LocalDate dateFermeture;
     private int municipaliteId;
     private int typeMilieuId;
 }

@@ -1,6 +1,5 @@
 package Etl;
 
-import Etl.Extractors.DataExtractor;
 import Models.Etl.Extractors.Dto.CsvData;
 import Utils.Logging.LoggingUtil;
 
