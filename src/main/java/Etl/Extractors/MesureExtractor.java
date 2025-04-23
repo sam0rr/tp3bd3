@@ -8,9 +8,10 @@ import Models.Polluant;
 import Models.Station;
 import Utils.Logging.LoggingUtil;
 import lombok.Getter;
-import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Logger;
+
+import static Utils.Parsing.ParsingUtil.parseDateOrNull;
 
 public class MesureExtractor extends BaseExtractor<MesureCsvModel> {
 
@@ -81,7 +82,7 @@ public class MesureExtractor extends BaseExtractor<MesureCsvModel> {
     private Mesure buildMesureFromModel(MesureCsvModel model) {
         return Mesure.builder()
                 .stationId(model.getStationId())
-                .date(LocalDate.parse(model.getDate()))
+                .date(parseDateOrNull(model.getDate()))
                 .heure(model.getHeure())
                 .codePolluant(model.getCodePolluant())
                 .valeur(model.getValeur())
