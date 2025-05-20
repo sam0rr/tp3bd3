@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b540e7dc-2ca4-4450-a779-2e684aa783c3" name="Changes" comment="feat : date parsing null">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="b540e7dc-2ca4-4450-a779-2e684aa783c3" name="Changes" comment="feat : date parsing null" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -155,7 +152,7 @@
       <workItem from="1745616428885" duration="301000" />
       <workItem from="1746224892636" duration="356000" />
       <workItem from="1746342315838" duration="9000" />
-      <workItem from="1747707958484" duration="747000" />
+      <workItem from="1747707958484" duration="1001000" />
     </task>
     <task id="LOCAL-00001" summary="feat : use jdk 21 LTS">
       <option name="closed" value="true" />

@@ -29,8 +29,9 @@ tp3bd3/
 
 Make sure you have **Docker** and **Docker Compose** installed.
 
-1. Clone the project:
+1. Clone the project (paste in your terminal or IDE):
    ```bash
+   mkdir tp3bd3
    git clone https://github.com/sam0rr/tp3bd3
    cd tp3bd3
    ```
