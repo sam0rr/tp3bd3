@@ -45,7 +45,7 @@ Make sure you have **Docker** and **Docker Compose** installed.
 ## Interface Access
 
 Once started:
-* View the database with PGWeb: http://localhost:8081
+* View the database with PGWeb: http://0.0.0.0:8081/
 
 You can explore the tables automatically created and populated by the ETL with the CSV file data.
 
